@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title layout:title-pattern="$CONTENT_TITLE  $LAYOUT_TITLE"> :: Rebel</title>
+    <link rel="icon" th:href="@{/asset/images/batman.jpg}" type="image/icon type">
+
+    <div th:replace="commonfragment/common :: gcss"></div>
+    <div th:replace="commonfragment/common :: gscripts"></div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!--Menu Hover Action custom CSS-->
+    <style>
+        .dropbtn {
+            color: white;
+            padding: 3px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            /*position: absolute;*/
+            background-color: #f1f1f1;
+            min-width: 160px;
+            /*box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);*/
+            /*z-index: 1;*/
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 5px 5px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+        }
+
+        .overlay {
+            position: fixed;
+            background: rgba(0,0,0,0.8);
+            width: 10%;
+            height: 10%;
+            top: 50%;
+            left: 50%;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="" th:replace="commonfragment/common :: gnavbar"></div>
+
+    <div class="row">
+
+        <div class="col-md-2">
+            <div th:replace="commonfragment/common :: gleftbar"></div>
+        </div>
+
+        <div class="col-md-10">
+            <div class="mb-sm-2 mt-2 border" id="outerdiv">
+                <img th:src="@{/asset/images/45.gif}" class="overlay" id="customloader"/>
+
+                <div layout:fragment="content">
+
+                    <!--Page content goes here-->
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- FOOTER -->
+    <div th:replace="commonfragment/common :: gfooter"></div>
+</div>
+
+</body>
+
+</html>
+

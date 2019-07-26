@@ -1,0 +1,102 @@
+<div class="container"  th:fragment="firstcreate" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="mb-sm-2 mt-2 border">
+        <div class="m-2 ">
+            <form id="studentform" class="needs-validation" novalidate>
+                <div class="form-row">
+                    <div class="col panel panel-default">
+                        <div class="panel-body"><h3><u> Create Member Information</u></h3></div>
+                    </div>
+
+                    <div class="col panel panel-default ">
+                        <div class="panel-body float-right"><h3><a href="/admin/student">
+                            <img class="" th:src="@{/asset/images/back.png}" width="15" height="15" alt=" "></a></h3>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="col">
+                        <label class="col-md-8" for="studentId">Strudent Id: <span
+                                class="mandatoryfield">*</span></label>
+                        <input type="text" name="studentId" id="studentId"
+                               class="form-control input-fields validate[required]"
+                               placeholder="E.g: 001">
+                    </div>
+                    <div class="col">
+                        <label class="col-md-8" for="studentId">Strudent Name: <span
+                                class="mandatoryfield">*</span></label>
+                        <input type="text" name="studentName" id="studentName"
+                               class="form-control input-fields validate[required]" placeholder="E.g: Mr.Slack">
+                    </div>
+                    <div class="col">
+                        <label class="col-md-8" for="studentId">Course Id: <span class="mandatoryfield">*</span></label>
+                        <input type="text" name="courseId" id="courseId"
+                               class="form-control input-fields validate[required]"
+                               placeholder="E.g: CIT 101">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col">
+                        <label class="col-md-8" for="studentId">Course Title: <span
+                                class="mandatoryfield">*</span></label>
+                        <input type="text" name="courseTitle" id="courseTitle"
+                               class="form-control input-fields validate[required]" placeholder="E.g: Data Structure">
+                    </div>
+                    <div class="col">
+                        <label class="col-md-8" for="studentId">Dept Name: <span class="mandatoryfield">*</span></label>
+                        <input type="text" name="deptName" id="deptName"
+                               class="form-control input-fields validate[required]"
+                               placeholder="E.g: CSE">
+                    </div>
+                    <div class="col">
+                        <label class="col-md-8" for="studentId">Level-Semester: <span
+                                class="mandatoryfield">*</span></label>
+                        <input type="text" name="semesterInfo" id="semesterInfo"
+                               class="form-control input-fields validate[required]" placeholder="E.g: L-1;S-1">
+                    </div>
+                </div>
+
+                <div class="m-2 form-row">
+
+                    <div class="col">
+
+                        <button id="listStudent" name="listStudent" type="button" class="ml-2 btn btn-success btn-sm float-right"
+                                onclick="resetStudentList();"><i
+                                class="fa fa-check"></i> Reset
+                        </button>
+
+                        <button id="saveStudent" name="saveStudent" type="button" class=" btn  btn-success btn-sm float-right"
+                                onclick="saveStudentFn();"> <i
+                                class="fa fa-check"></i>Save
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+    <!--<div class=" mt-5 border" style="">-->
+        <!--<div class="m-2 ">-->
+            <!--<table border="1" id="listStudentTable" class="table">-->
+                <!--<thead>-->
+                <!--<tr>-->
+                    <!--<th>Index</th>-->
+                    <!--<th>Id</th>-->
+                    <!--<th>Name</th>-->
+                    <!--<th>Course Id</th>-->
+                <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody>-->
+                <!--</tbody>-->
+            <!--</table>-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+</div>

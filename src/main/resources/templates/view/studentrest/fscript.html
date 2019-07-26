@@ -1,0 +1,27 @@
+<div class="container" th:fragment="firstscript" xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+        });
+
+
+        /* function */
+        function listRestStudent() {
+            $.ajax({
+//                url: "http://10.100.43.173:8084/listStudentRest", //when server is in remote machine.
+                url: "/listStudentRest", // when server is in own machine.
+                contentType: "application/json",
+                dataType: "json",
+                data: $("#studentform").serialize(),
+                success:function (data) {
+                    console.log(data);
+                    alert(JSON.stringify(data));
+                }
+            });
+        }
+
+
+
+    </script>
+
+</div>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main_custom">
+<head>
+    <title>Member</title>
+</head>
+
+
+<div layout:fragment="content">
+    <!-- my custom fragments links here-->
+    <div th:replace="view/student/create/script :: firstscript"></div>
+    <div th:replace="view/student/create/create :: firstcreate"></div>
+
+</div>
+
+
+</html>

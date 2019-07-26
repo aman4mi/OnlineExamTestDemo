@@ -1,0 +1,44 @@
+<div class="container" th:fragment="editscript" xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <script type="text/javascript">
+        var loaderId = "#customloader";
+        var formId = "#customloader";
+
+        $(document).ready(function () {
+            $(loaderId).css('visibility', 'hidden'); // Hide element
+
+            debugger
+            var id = [[${studentInfo.id}]];
+//            alert(JSON.stringify(id) + " my id");
+        });
+
+        /* hit controller to create (insert) data in DB */
+        function updateStudentFn() {
+            var formData = $("#studentformEdit").serialize();
+            startLoader(formId);
+
+            $.ajax({
+                type: "post",
+                url: "/admin/saveStudent",
+                data: formData,
+                dataType: "json",
+                success: function (data) {
+                    swal("Welcome ", data.message);
+
+                    var url = "/admin/student";
+                    window.open(url, "_self");
+
+                    stopLoader(formId);
+                }
+            });
+
+        }
+
+        function resetStudentList() {
+
+        }
+
+
+    </script>
+
+</div>

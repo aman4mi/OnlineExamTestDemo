@@ -1,0 +1,116 @@
+<div class="container" th:fragment="firstscript" xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <script type="text/javascript">
+        var loaderId = "#customloader";
+        var formId = "#customloader";
+
+        $(document).ready(function () {
+            $(loaderId).css('visibility', 'hidden'); // Hide element
+            listStudentFn();
+        });
+
+        function listStudentFn() {
+            startLoader(formId);
+
+            $.ajax({
+                type: "get",
+                url: "/admin/listStudent",
+                data: "",
+                dataType: "json",
+                success: function (data) {
+                    var dataObj = data.queryList;
+                    $('#example').DataTable({
+                        "aaData": dataObj,
+                        "columns": [
+                            {"data": "id"},
+//                            {
+//                                "data": "student_id",
+//                                "render": function (data, type, row, meta) {
+//                                    if (type === 'display') {
+//                                        data = '<a href="' + data + '">' + data + '</a>';
+//                                    }
+//
+//                                    return data;
+//                                }
+//                            },
+                            {
+                                "data": function (data, type, row, meta) {
+                                    return '<a href="#"  onclick="setDataToForm(' + '\'' + data.id + '\',' + '\'' + data.id + '\')">' + data.student_id + '</a>';
+//                                    return '<a href="#"  onclick="setDataToForm(' + '\'' + data.id + '\',' + '\'' + data.student_id + '\')">' + data.student_id + '</a>';
+                                }
+                            },
+
+                            {"data": "student_name"},
+                            {"data": "course_id"},
+                            {"data": "course_title"},
+                            {"data": "dept_name"},
+                            {"data": "semester_info"}
+                        ]
+                    });
+                    stopLoader(formId);
+                }
+            });
+        }
+
+        function setDataToForm(id, ids) {
+            $.ajax({
+                url: '/admin/selectStudent',
+                type: 'POST',
+                dataType: 'json',
+                data: {id: id},
+                success: function (result) {
+
+                    var url = "/admin/editStudent?id=" + id;
+//                    window.open(url, "_self");
+
+                    $.post(url, function (data) {
+                        var w = window.open('about:blank', "_self");
+                        w.document.open();
+                        w.document.write(data);
+                        w.document.close();
+                    });
+
+                }
+            });
+        }
+
+        /* hit controller to fetch data from database and display in table */
+        function listStudentFn1() {
+            startLoader(formId);
+            $.ajax({
+                type: "get",
+                url: "/admin/listStudent",
+                data: "",
+                dataType: "json",
+                success: function (data) {
+                    tableDataReset();
+                    var dataObj = data.queryList;
+                    tableDataLoad(dataObj);
+                    stopLoader(formId);
+                }
+            });
+        }
+
+        /*
+         delete table row(tr) except table header(gt(0))
+         */
+        function tableDataReset() {
+            $("#listStudentTable").find("tr:gt(0)").remove();
+        }
+
+        function tableDataLoad(dataObj) {
+            $.each(dataObj, function (index, value) {
+                var $row = $('<tr>' +
+                        '<td>' + index + '</td>' +
+                        '<td>' + dataObj[index].student_id + '</td>' +
+                        '<td>' + dataObj[index].student_name + '</td>' +
+                        '<td>' + value.course_id + '</td>' +
+                        '</tr>');
+                $('table> tbody').append($row);
+            });
+        }
+
+
+    </script>
+
+</div>
