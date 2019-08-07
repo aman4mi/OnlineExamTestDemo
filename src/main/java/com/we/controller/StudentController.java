@@ -36,14 +36,26 @@ public class StudentController extends BaseController {
         this.selectStudentInfoActionService = selectStudentInfoActionService;
     }
 
+// depricated controllers are (showStudent,createStudent) old and don't support session oser name.
+//    @GetMapping("/admin/student")
+//    public String showStudent() {
+//        return "view/student/show";
+//    }
+//
+//    @GetMapping("/admin/createStudent")
+//    public String createStudent() {
+//        return "view/student/create/show";
+//    }
 
     @GetMapping("/admin/student")
-    public String showStudent() {
+    public String showStudent(Model model) {
+        model.addAttribute("userName", super.sessionValue());
         return "view/student/show";
     }
 
     @GetMapping("/admin/createStudent")
-    public String createStudent() {
+    public String createStudent(Model model) {
+        model.addAttribute("userName", super.sessionValue());
         return "view/student/create/show";
     }
 
