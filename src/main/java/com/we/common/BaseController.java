@@ -1,7 +1,11 @@
 package com.we.common;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.we.entity.User;
+import com.we.services.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -18,6 +22,9 @@ public class BaseController {
 
     @Autowired
     private ObjectMapper mapperObj;
+
+    @Autowired
+    private UserService userService;
 
     protected BaseController() {
 
@@ -59,6 +66,13 @@ public class BaseController {
         }
 
         return action.buildSuccessResult(postResult);
+    }
+
+    protected String sessionValue() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        String getRole = String.valueOf(auth.getAuthorities());
+        return "Welcome " + user.getName() + " " + " (" + user.getEmail() + ")" + getRole;
     }
 
 }

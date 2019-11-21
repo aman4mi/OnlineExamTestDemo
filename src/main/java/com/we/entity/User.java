@@ -5,6 +5,7 @@ import java.util.Set;
 
 /**
  * Created by Aman on 4/20/2019.
+ * https://howtodoinjava.com/hibernate/hibernate-one-to-many-mapping-using-annotations/
  */
 @Entity
 @Table(name = "user_tab")
