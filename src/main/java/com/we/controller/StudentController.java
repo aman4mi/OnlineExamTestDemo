@@ -145,6 +145,7 @@ public class StudentController extends BaseController {
             xlsReportConfiguration.setDetectCellType(true);
             xlsReportConfiguration.setWhitePageBackground(false);
             xlsExporter.setConfiguration(xlsReportConfiguration);
+
             xlsExporter.exportReport();
         }
     }
