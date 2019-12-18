@@ -33,7 +33,7 @@ import java.util.Map;
  */
 
 @Controller
-public class StudentController extends BaseController {
+public class StudentController extends BaseController  {
 
     @Autowired
     private StudentInfoRepository studentInfoRepository;
@@ -119,11 +119,11 @@ public class StudentController extends BaseController {
         OutputStream out = response.getOutputStream();
         /*response.setHeader("Content-Disposition", String.format("attachment; filename=\"Demo_Report.pdf\""));
         response.setContentType("application/x-download");*/
-        response.setHeader("Content-Disposition", String.format("inline; filename=Demo_Report" + "_" + new Date() + ".pdf"));
-        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", String.format("inline; filename=Demo_Report" + "_" + new Date() + ".parameters.get(\"exportMode\")"));
+        response.setContentType("application/"+parameters.get("exportMode"));
 
         jasperPrint = generateRptStudentInfoActionService.exportPdfFile(parameters);
-        this.exportModeSelector("pdf", jasperPrint, out);
+        this.exportModeSelector((String) parameters.get("exportMode"), jasperPrint, out);
 
     }
 

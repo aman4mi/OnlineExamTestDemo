@@ -90,13 +90,11 @@
 
             var data = '';
             data = data + "id=" + res[0];
+            data = data + "&exportMode=" + "pdf";
+
             var url = "/admin/rptStudent?" + data;
-            debugger
             window.open(url);
-            // var id = [[${studentRpt}]]
 
-
-            // window.open(url, "_self");
         }
 
         /* hit controller to fetch data from database and display in table */
@@ -126,11 +124,11 @@
         function tableDataLoad(dataObj) {
             $.each(dataObj, function (index, value) {
                 var $row = $('<tr>' +
-                    '<td>' + index + '</td>' +
-                    '<td>' + dataObj[index].student_id + '</td>' +
-                    '<td>' + dataObj[index].student_name + '</td>' +
-                    '<td>' + value.course_id + '</td>' +
-                    '</tr>');
+                        '<td>' + index + '</td>' +
+                        '<td>' + dataObj[index].student_id + '</td>' +
+                        '<td>' + dataObj[index].student_name + '</td>' +
+                        '<td>' + value.course_id + '</td>' +
+                        '</tr>');
                 $('table> tbody').append($row);
             });
         }
