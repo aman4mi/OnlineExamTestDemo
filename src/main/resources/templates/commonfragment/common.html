@@ -102,6 +102,15 @@
                 $("#customloader").css('visibility', 'hidden'); // Show element
             }
 
+            function toasterDisplay(message) {
+                var x = document.getElementById("snackbar");
+                x.innerText = message ? message : "...............";
+                x.className = "show";
+                setTimeout(function () {
+                    x.className = x.className.replace("show", "");
+                }, 1500);
+            }
+
             $(document).ready(function () {
                 var modelAttributeValue = [[${userName}]];
                 $("#sessionUserInfo").html(modelAttributeValue);

@@ -3,95 +3,174 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title layout:title-pattern="$CONTENT_TITLE  $LAYOUT_TITLE"> :: Rebel</title>
-    <link rel="icon" th:href="@{/asset/images/batman.jpg}" type="image/icon type">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title layout:title-pattern="$CONTENT_TITLE  $LAYOUT_TITLE">:: Rebel</title>
+        <link rel="icon" th:href="@{/asset/images/batman.jpg}" type="image/icon type">
 
-    <div th:replace="commonfragment/common :: gcss"></div>
-    <div th:replace="commonfragment/common :: gscripts"></div>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <!--Menu Hover Action custom CSS-->
-    <style>
-        .dropbtn {
-            color: white;
-            padding: 3px;
-            font-size: 16px;
-            border: none;
-        }
+        <div th:replace="commonfragment/common :: gcss"></div>
+        <div th:replace="commonfragment/common :: gscripts"></div>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <!--Menu Hover Action custom CSS-->
 
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
+        <!--Toast Message implementation-->
+        <div id="snackbar">Toast Message implementation..</div>
 
-        .dropdown-content {
-            display: none;
-            /*position: absolute;*/
-            background-color: #f1f1f1;
-            min-width: 160px;
-            /*box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);*/
-            /*z-index: 1;*/
-        }
+        <style>
+            /*Toast Css start................
+            https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_snackbar*/
+            #snackbar {
+                visibility: hidden;
+                min-width: 250px;
+                margin-left: -125px;
+                background-color: #156c1a;
+                color: #cdd4da;
+                text-align: center;
+                border-radius: 2px;
+                padding: 16px;
+                position: fixed;
+                z-index: 1;
+                right: 0%;
+                bottom: 30px;
+                font-size: 17px;
+            }
 
-        .dropdown-content a {
-            color: black;
-            padding: 5px 5px;
-            text-decoration: none;
-            display: block;
-        }
+            #snackbar.show {
+                visibility: visible;
+                -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+                animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            }
 
-        .dropdown-content a:hover {
-            background-color: #ddd;
-        }
+            @-webkit-keyframes fadein {
+                from {
+                    bottom: 0;
+                    opacity: 0;
+                }
+                to {
+                    bottom: 30px;
+                    opacity: 1;
+                }
+            }
 
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
+            @keyframes fadein {
+                from {
+                    bottom: 0;
+                    opacity: 0;
+                }
+                to {
+                    bottom: 30px;
+                    opacity: 1;
+                }
+            }
 
-        .dropdown:hover .dropbtn {
-        }
+            @-webkit-keyframes fadeout {
+                from {
+                    bottom: 30px;
+                    opacity: 1;
+                }
+                to {
+                    bottom: 0;
+                    opacity: 0;
+                }
+            }
 
-        .overlay {
-            position: fixed;
-            background: rgba(0,0,0,0.8);
-            width: 10%;
-            height: 10%;
-            top: 50%;
-            left: 50%;
-        }
+            @keyframes fadeout {
+                from {
+                    bottom: 30px;
+                    opacity: 1;
+                }
+                to {
+                    bottom: 0;
+                    opacity: 0;
+                }
+            }
 
-    </style>
-</head>
+            /*Toast Css stop................*/
 
-<body>
 
-<div class="container">
-    <div class="" th:replace="commonfragment/common :: gnavbar"></div>
+            /*Dropdown menu start............*/
+            .dropbtn {
+                color: white;
+                padding: 3px;
+                font-size: 16px;
+                border: none;
+            }
 
-    <div class="row">
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
 
-        <div class="col-md-2">
-            <div th:replace="commonfragment/common :: gleftbar"></div>
-        </div>
+            .dropdown-content {
+                display: none;
+                /*position: absolute;*/
+                background-color: #f1f1f1;
+                min-width: 160px;
+                /*box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);*/
+                /*z-index: 1;*/
+            }
 
-        <div class="col-md-10">
-            <div class="mb-sm-2 mt-2 border" id="outerdiv">
-                <img th:src="@{/asset/images/45.gif}" class="overlay" id="customloader"/>
+            .dropdown-content a {
+                color: black;
+                padding: 5px 5px;
+                text-decoration: none;
+                display: block;
+            }
 
-                <div layout:fragment="content">
+            .dropdown-content a:hover {
+                background-color: #ddd;
+            }
 
-                    <!--Page content goes here-->
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .dropdown:hover .dropbtn {
+            }
+
+            .overlay {
+                position: fixed;
+                background: rgba(0, 0, 0, 0.8);
+                width: 10%;
+                height: 10%;
+                top: 50%;
+                left: 50%;
+            }
+
+            /*Dropdown menu stop............*/
+
+
+        </style>
+    </head>
+
+    <body>
+
+        <div class="container">
+            <div class="" th:replace="commonfragment/common :: gnavbar"></div>
+
+            <div class="row">
+
+                <div class="col-md-2">
+                    <div th:replace="commonfragment/common :: gleftbar"></div>
                 </div>
+
+                <div class="col-md-10">
+                    <div class="mb-sm-2 mt-2 border" id="outerdiv">
+                        <img th:src="@{/asset/images/45.gif}" class="overlay" id="customloader"/>
+
+                        <div layout:fragment="content">
+
+                            <!--Page content goes here-->
+                        </div>
+                    </div>
+                </div>
+
             </div>
+            <!-- FOOTER -->
+            <div th:replace="commonfragment/common :: gfooter"></div>
         </div>
 
-    </div>
-    <!-- FOOTER -->
-    <div th:replace="commonfragment/common :: gfooter"></div>
-</div>
-
-</body>
+    </body>
 
 </html>
 

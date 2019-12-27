@@ -5,21 +5,9 @@
         var formId = "#customloader";
 
         $(document).ready(function () {
-
-
             $(loaderId).css('visibility', 'hidden'); // Hide element
             listStudentFn();
         });
-
-        function toasterTest() {
-            debugger
-            var x = document.getElementById("snackbar");
-            // var x = $("#snackbar").html("Hello World");
-            x.className = "show";
-            setTimeout(function () {
-                x.className = x.className.replace("show", "");
-            }, 2000);
-        }
 
         function listStudentFn() {
             startLoader(formId);
@@ -66,6 +54,8 @@
                             }
                         ]
                     });
+
+                    toasterDisplay(data.message);
                     stopLoader(formId);
                 }
             });
@@ -99,7 +89,7 @@
                 showError("Please select a serial");
                 return;
             }
-
+            toasterDisplay("Processing...");
             var data = '';
             data = data + "id=" + res[0];
             data = data + "&exportMode=" + "pdf";
