@@ -3,13 +3,14 @@
     <script type="text/javascript">
         var loaderId = "#customloader";
         var formId = "#customloader";
+        var studentIdSelected;
+
 
         $(document).ready(function () {
             $(loaderId).css('visibility', 'hidden'); // Hide element
-
-            debugger
-            var id = [[${studentInfo.id}]];
-//            alert(JSON.stringify(id) + " my id");
+            /*debugger
+            studentIdSelected = [[${studentInfo.id}]];
+            alert(JSON.stringify(id) + " my id");*/
         });
 
         /* hit controller to create (insert) data in DB */
@@ -32,6 +33,36 @@
                 }
             });
 
+        }
+
+        function deleteStudentById() {
+            swal({
+                title: "Are you sure?",
+                text: "Delete Parmanently.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                cancelButtonColor: "#DD6B33",
+                confirmButtonText: "Yes, Delete it!",
+                cancelButtonText: "No, cancel please!"
+            }).then(
+                    function () {
+                        $.ajax({
+                            url: '/admin/delStudent',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {id: $("#id").val()},
+                            success: function (result) {
+                                debugger
+                                toasterDisplay(result.studentDelInfo);
+                                var url = "/admin/student";
+                                window.open(url, "_self");
+                            }
+                        });
+                    },
+                    function () {
+                        return false;
+                    });
         }
 
         function resetStudentList() {

@@ -12,6 +12,9 @@ public interface StudentInfoRepository extends JpaRepository<StudentInfo, Long> 
 
     StudentInfo findById(long Id);
 
-//    @Query("select t from StudentInfo t where t.Id = :Id")
+    @Override
+    void delete(StudentInfo studentInfo);
+
+    //    @Query("select t from StudentInfo t where t.Id = :Id")
 //    StudentInfo findById(@Param("Id") long Id);
 }

@@ -3,17 +3,13 @@ package com.we.controller;
 import com.we.common.BaseController;
 import com.we.entity.StudentInfo;
 import com.we.repository.StudentInfoRepository;
-import com.we.services.action.studentinfo.CreateStudentInfoActionService;
-import com.we.services.action.studentinfo.GenerateRptStudentInfoActionService;
-import com.we.services.action.studentinfo.ListStudentInfoActionService;
-import com.we.services.action.studentinfo.SelectStudentInfoActionService;
+import com.we.services.action.studentinfo.*;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperPrint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -36,16 +32,19 @@ public class StudentController extends BaseController {
     private ListStudentInfoActionService listStudentInfoActionService;
     private SelectStudentInfoActionService selectStudentInfoActionService;
     private GenerateRptStudentInfoActionService generateRptStudentInfoActionService;
+    private DeleteStudentInfoActionService deleteStudentInfoActionService;
 
     @Autowired
     public StudentController(CreateStudentInfoActionService createStudentInfoActionService
             , ListStudentInfoActionService listStudentInfoActionService
-            , SelectStudentInfoActionService selectStudentInfoActionService,
-                             GenerateRptStudentInfoActionService generateRptStudentInfoActionService) {
+            , SelectStudentInfoActionService selectStudentInfoActionService
+            , GenerateRptStudentInfoActionService generateRptStudentInfoActionService
+            ,DeleteStudentInfoActionService deleteStudentInfoActionService) {
         this.createStudentInfoActionService = createStudentInfoActionService;
         this.listStudentInfoActionService = listStudentInfoActionService;
         this.selectStudentInfoActionService = selectStudentInfoActionService;
         this.generateRptStudentInfoActionService = generateRptStudentInfoActionService;
+        this.deleteStudentInfoActionService = deleteStudentInfoActionService;
     }
 
 // depricated controllers are (showStudent,createStudent) old and don't support session oser name.
@@ -93,9 +92,7 @@ public class StudentController extends BaseController {
     @PostMapping("/admin/selectStudent")
     @ResponseBody
     public Long studentInfoids(@RequestParam Map<String, Object> parameters) {
-
         long id = Long.parseLong((String) parameters.get("id"));
-
         return id;
     }
 
@@ -103,6 +100,13 @@ public class StudentController extends BaseController {
     public String studentInfoEdit(@RequestParam Map<String, Object> parameters, Model model) {
         StudentInfo studentInfo = selectStudentInfoActionService.studentInfo(parameters);
         model.addAttribute("studentInfo", studentInfo);
+        return "view/student/edit/show";
+    }
+
+    @RequestMapping(value = "/admin/delStudent", method = {RequestMethod.GET, RequestMethod.POST})
+    public String studentDeleteById(@RequestParam Map<String, Object> parameters, Model model) {
+        String studentDelInfo = deleteStudentInfoActionService.studentDelete(parameters);
+        model.addAttribute("studentDelInfo", studentDelInfo);
         return "view/student/edit/show";
     }
 
