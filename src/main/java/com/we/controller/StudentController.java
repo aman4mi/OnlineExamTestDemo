@@ -9,12 +9,6 @@ import com.we.services.action.studentinfo.ListStudentInfoActionService;
 import com.we.services.action.studentinfo.SelectStudentInfoActionService;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
-import net.sf.jasperreports.engine.export.JRXlsExporter;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
-import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
-import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +27,7 @@ import java.util.Map;
  */
 
 @Controller
-public class StudentController extends BaseController  {
+public class StudentController extends BaseController {
 
     @Autowired
     private StudentInfoRepository studentInfoRepository;
@@ -114,39 +108,17 @@ public class StudentController extends BaseController  {
 
 
     @RequestMapping(value = "/admin/rptStudent", method = {RequestMethod.GET, RequestMethod.POST})
-    public void export(@RequestParam Map<String, Object> parameters, ModelAndView model, HttpServletResponse response) throws IOException, JRException, SQLException {
+    public void export(@RequestParam Map<String, Object> parameters, HttpServletResponse response) throws IOException, JRException, SQLException {
         JasperPrint jasperPrint = null;
         OutputStream out = response.getOutputStream();
         /*response.setHeader("Content-Disposition", String.format("attachment; filename=\"Demo_Report.pdf\""));
         response.setContentType("application/x-download");*/
-        response.setHeader("Content-Disposition", String.format("inline; filename=Demo_Report" + "_" + new Date() + ".parameters.get(\"exportMode\")"));
-        response.setContentType("application/"+parameters.get("exportMode"));
+        response.setHeader("Content-Disposition", String.format("inline; filename=Student_Report" + "_" + new Date() + "." + parameters.get("exportMode")));
+        response.setContentType("application/" + parameters.get("exportMode"));
 
         jasperPrint = generateRptStudentInfoActionService.exportPdfFile(parameters);
-        this.exportModeSelector((String) parameters.get("exportMode"), jasperPrint, out);
+        super.exportModeSelector((String) parameters.get("exportMode"), jasperPrint, out);
 
     }
 
-    private void exportModeSelector(String xprtMode, JasperPrint jasperPrint, OutputStream outputStream) throws JRException {
-        if (xprtMode.equals("pdf")) {// exports report to pdf
-            JRPdfExporter exporter = new JRPdfExporter();
-            exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-            exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(outputStream));
-            SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
-            exporter.setConfiguration(configuration);
-            exporter.exportReport();
-        } else {// exports report to excel
-            JRXlsExporter xlsExporter = new JRXlsExporter();
-            xlsExporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-            xlsExporter.setExporterOutput(new SimpleOutputStreamExporterOutput(outputStream));
-            SimpleXlsReportConfiguration xlsReportConfiguration = new SimpleXlsReportConfiguration();
-            xlsReportConfiguration.setOnePagePerSheet(false);
-            xlsReportConfiguration.setRemoveEmptySpaceBetweenRows(true);
-            xlsReportConfiguration.setDetectCellType(true);
-            xlsReportConfiguration.setWhitePageBackground(false);
-            xlsExporter.setConfiguration(xlsReportConfiguration);
-
-            xlsExporter.exportReport();
-        }
-    }
 }
