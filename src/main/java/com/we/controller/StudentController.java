@@ -39,7 +39,7 @@ public class StudentController extends BaseController {
             , ListStudentInfoActionService listStudentInfoActionService
             , SelectStudentInfoActionService selectStudentInfoActionService
             , GenerateRptStudentInfoActionService generateRptStudentInfoActionService
-            ,DeleteStudentInfoActionService deleteStudentInfoActionService) {
+            , DeleteStudentInfoActionService deleteStudentInfoActionService) {
         this.createStudentInfoActionService = createStudentInfoActionService;
         this.listStudentInfoActionService = listStudentInfoActionService;
         this.selectStudentInfoActionService = selectStudentInfoActionService;
@@ -104,10 +104,9 @@ public class StudentController extends BaseController {
     }
 
     @RequestMapping(value = "/admin/delStudent", method = {RequestMethod.GET, RequestMethod.POST})
-    public String studentDeleteById(@RequestParam Map<String, Object> parameters, Model model) {
-        String studentDelInfo = deleteStudentInfoActionService.studentDelete(parameters);
-        model.addAttribute("studentDelInfo", studentDelInfo);
-        return "view/student/edit/show";
+    public String studentDeleteById(@RequestParam Map<String, Object> parameters) {
+        deleteStudentInfoActionService.studentDelete(parameters);
+        return "redirect: view/student/show";
     }
 
 
