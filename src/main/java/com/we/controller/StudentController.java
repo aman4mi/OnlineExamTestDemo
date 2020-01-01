@@ -79,6 +79,7 @@ public class StudentController extends BaseController {
     @ResponseBody
     public String saveStudent(@RequestParam Map<String, Object> parameters) throws Exception {
         // @RequestParam MultiValueMap parameters  //it also very effictive.
+        parameters.put("createdBy", super.getSessionUserName());
         return renderOutput(createStudentInfoActionService, parameters);
     }
 

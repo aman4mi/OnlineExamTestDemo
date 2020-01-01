@@ -55,7 +55,7 @@ public class CreateStudentInfoActionService extends BaseService implements Actio
         studentInfo.setCourseTitle((String) previousResult.get("courseTitle"));
         studentInfo.setDeptName((String) previousResult.get("deptName"));
         studentInfo.setSemesterInfo((String) previousResult.get("semesterInfo"));
-        studentInfo.setCreatedBy("Me");
+        studentInfo.setCreatedBy((String) previousResult.get("createdBy"));
         studentInfo.setCreatedOn(dateString);
 
         studentInfoRepository.save(studentInfo);

@@ -81,6 +81,12 @@ public class BaseController {
         return "Welcome " + user.getName() + " " + " (" + user.getEmail() + ")" + getRole;
     }
 
+    protected String getSessionUserName() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        return user.getName() ;
+    }
+
     protected void exportModeSelector(String xprtMode, JasperPrint jasperPrint, OutputStream outputStream) throws JRException {
         if (xprtMode.equals("pdf")) {// exports report to pdf
             JRPdfExporter exporter = new JRPdfExporter();
