@@ -30,7 +30,7 @@ public class GenerateRptStudentInfoActionService extends BaseService {
 
     public JasperPrint exportPdfFile(Map params) {
         try {
-            log.error("-------- Student Report printing------------ start----");
+            log.info("-------- Student Report printing------------ start----");
             Map<String, Object> parameters = new HashMap<String, Object>();
 
             String jasperFileName = "StudentRpt";
@@ -42,7 +42,7 @@ public class GenerateRptStudentInfoActionService extends BaseService {
             parameters.put("id", Long.parseLong(params.get("id").toString()));
 
             JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters, dataSource.getConnection());
-            log.error("-------- Student Report printing------------ stop----");
+            log.info("-------- Student Report printing------------ stop----");
 
             return print;
         } catch (Exception ex) {
