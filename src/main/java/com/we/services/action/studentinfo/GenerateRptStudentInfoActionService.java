@@ -1,6 +1,7 @@
 package com.we.services.action.studentinfo;
 
 import com.we.services.BaseService;
+import com.we.services.Tools;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -31,6 +32,7 @@ public class GenerateRptStudentInfoActionService extends BaseService {
     public JasperPrint exportPdfFile(Map params) {
         try {
             log.info("-------- Student Report printing------------ start----");
+            System.out.println(Tools.convertToSonkha("10"));
             Map<String, Object> parameters = new HashMap<String, Object>();
 
             String jasperFileName = "StudentRpt";
