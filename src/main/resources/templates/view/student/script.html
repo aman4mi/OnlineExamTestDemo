@@ -44,9 +44,18 @@
                             {"data": "course_id"},
                             {"data": "course_title"},
                             {"data": "dept_name"},
-                            {"data": "semester_info"}
+                            {"data": "semester_info"},
+                            {
+                                "data": function (data, type, row, meta) {
+
+                                    var str = data.id + "_" + data.id;
+                                    return '<a href="#"  onclick="generateRpt(' + '\'' + str + '\')">Preview</a>';
+                                }, "title": "Preview"
+                            }
                         ]
                     });
+
+                    toasterDisplay(data.message);
                     stopLoader(formId);
                 }
             });
@@ -72,6 +81,23 @@
 
                 }
             });
+        }
+
+        function generateRpt(item_id) {
+            var res = item_id.split("_");
+            if (res[0] == "") {
+                showError("Please select a serial");
+                return;
+            }
+            toasterDisplay("Processing...");
+            var data = '';
+            data = data + "id=" + res[0];
+            data = data + "&exportMode=" + "pdf";
+            // data = data + "&exportMode=" + "xls";
+
+            var url = "/admin/rptStudent?" + data;
+            window.open(url);
+
         }
 
         /* hit controller to fetch data from database and display in table */
@@ -101,11 +127,11 @@
         function tableDataLoad(dataObj) {
             $.each(dataObj, function (index, value) {
                 var $row = $('<tr>' +
-                        '<td>' + index + '</td>' +
-                        '<td>' + dataObj[index].student_id + '</td>' +
-                        '<td>' + dataObj[index].student_name + '</td>' +
-                        '<td>' + value.course_id + '</td>' +
-                        '</tr>');
+                    '<td>' + index + '</td>' +
+                    '<td>' + dataObj[index].student_id + '</td>' +
+                    '<td>' + dataObj[index].student_name + '</td>' +
+                    '<td>' + value.course_id + '</td>' +
+                    '</tr>');
                 $('table> tbody').append($row);
             });
         }

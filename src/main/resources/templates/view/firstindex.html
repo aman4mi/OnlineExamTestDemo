@@ -6,44 +6,101 @@
 
 <head>
     <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        p {
+            text-align: center;
+            font-size: 60px;
+            margin-top: 0px;
+        }
+    </style>
 </head>
 
-<div layout:fragment="content">
-    <h4 class="mb-sm-2 mt-2 ml-2 col-md-9 border">&nbsp Meet Rebel poet </h4>
-    <div class="mb-sm-2 mt-2 ml-2 col-md-9 border">
-         <p>‘পুজারী, দুয়ার খোল,<br>
-            ক্ষুধার ঠাকুর দাঁড়ায়ে দুয়ারে পুজার সময় হলো !’<br>
-            </p>
-       <img class="second-slide" th:src="@{/asset/images/nazrul.jpg}" alt="">
+<!--<div layout:fragment="content">-->
+<!--    <h4 class="mb-sm-2 mt-2 ml-2 col-md-9 border">&nbsp Meet Rebel poet </h4>-->
+<!--    <div class="mb-sm-2 mt-2 ml-2 col-md-9 border">-->
+<!--         <p>‘পুজারী, দুয়ার খোল,<br>-->
+<!--            ক্ষুধার ঠাকুর দাঁড়ায়ে দুয়ারে পুজার সময় হলো !’<br>-->
+<!--            </p>-->
+<!--       <img class="second-slide" th:src="@{/asset/images/nazrul.jpg}" alt="">-->
+<!--        -->
+<!--       &lt;!&ndash;<p>‘পুজারী, দুয়ার খোল,<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;ক্ষুধার ঠাকুর দাঁড়ায়ে দুয়ারে পুজার সময় হলো !’<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;স্বপ্ন দেখিয়া আকুল পূজারী খুলিল ভজনালয়<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;দেবতার বরে আজ রাজা- টাজা হয়ে যাবে নিশ্চয় !<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;জীর্ণ-বস্ত্র শীর্ণ-গাত্র, ক্ষুধায় কন্ঠ ক্ষীণ<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;ডাকিল পান্থ, ‘দ্বার খোল বাবা, খাইনা তো সাত দিন !’<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;সহসা বন্ধ হল মন্দির , ভুখারী ফিরিয়া চলে<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;তিমির রাত্রি পথ জুড়ে তার ক্ষুধার মানিক জ্বলে !<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;ভুখারী ফুকারি’ কয়,<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;‘ঐ মন্দির পুজারীর, হায় দেবতা, তোমার নয় !’<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;মসজিদে কাল শিরনী আছিল, অঢেল গোস্ত রুটি<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;বাঁচিয়া গিয়াছে, মোল্লা সাহেব হেসে তাই কুটিকুটি !<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;এমন সময় এলো মুসাফির গায়ে-আজারির চিন্<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;বলে, ‘বাবা, আমি ভুখা ফাকা আছি আজ নিয়ে সাত দিন !’<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;তেরিয়াঁ হইয়া হাঁকিল মোল্লা–”ভ্যালা হলো দেখি লেঠা,<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;ভুখা আছ মর গে-ভাগাড়ে গিয়ে ! নামাজ পড়িস বেটা ?”<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;ভুখারী কহিল, ‘না বাবা !’ মোল্লা হাঁকিল- ‘তা হলে শালা<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;সোজা পথ দেখ !’ গোস্ত-রুটি নিয়া মসজিদে দিল তালা !<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;ভুখারী ফিরিয়া চলে,<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;চলিতে চলিতে বলে–<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;“আশিটা বছর কেটে গেল, আমি ডাকিনি তেমায় কভু,<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;আমার ক্ষুধার অন্ন তা’বলে বন্ধ করোনি প্রভু !<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;তব মজসিদ মন্দিরে প্রভু নাই মানুষের দাবী,<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;মোল্লা-পুরুত লাগায়েছে তার সকল দুয়ারে চাবী !”<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;কোথা চেঙ্গিস, গজনী-মামুদ, কোথায় কালাপাহাড় ;<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;ভেঙ্গে ফেল ঐ ভজনালয়ের যত তালা-দেওয়া- দ্বার !<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;খোদার ঘরে কে কপাট লাগায় কে দেয় সেখানে তালা ?<br>&ndash;&gt;-->
+<!--            &lt;!&ndash;সব দ্বার এর খোলা র’বে, চালা হাতুড়ি শাবল চালা !</p>&ndash;&gt;-->
+<!--    </div>-->
 
-       <!--<p>‘পুজারী, দুয়ার খোল,<br>-->
-            <!--ক্ষুধার ঠাকুর দাঁড়ায়ে দুয়ারে পুজার সময় হলো !’<br>-->
-            <!--স্বপ্ন দেখিয়া আকুল পূজারী খুলিল ভজনালয়<br>-->
-            <!--দেবতার বরে আজ রাজা- টাজা হয়ে যাবে নিশ্চয় !<br>-->
-            <!--জীর্ণ-বস্ত্র শীর্ণ-গাত্র, ক্ষুধায় কন্ঠ ক্ষীণ<br>-->
-            <!--ডাকিল পান্থ, ‘দ্বার খোল বাবা, খাইনা তো সাত দিন !’<br>-->
-            <!--সহসা বন্ধ হল মন্দির , ভুখারী ফিরিয়া চলে<br>-->
-            <!--তিমির রাত্রি পথ জুড়ে তার ক্ষুধার মানিক জ্বলে !<br>-->
-            <!--ভুখারী ফুকারি’ কয়,<br>-->
-            <!--‘ঐ মন্দির পুজারীর, হায় দেবতা, তোমার নয় !’<br>-->
-            <!--মসজিদে কাল শিরনী আছিল, অঢেল গোস্ত রুটি<br>-->
-            <!--বাঁচিয়া গিয়াছে, মোল্লা সাহেব হেসে তাই কুটিকুটি !<br>-->
-            <!--এমন সময় এলো মুসাফির গায়ে-আজারির চিন্<br>-->
-            <!--বলে, ‘বাবা, আমি ভুখা ফাকা আছি আজ নিয়ে সাত দিন !’<br>-->
-            <!--তেরিয়াঁ হইয়া হাঁকিল মোল্লা–”ভ্যালা হলো দেখি লেঠা,<br>-->
-            <!--ভুখা আছ মর গে-ভাগাড়ে গিয়ে ! নামাজ পড়িস বেটা ?”<br>-->
-            <!--ভুখারী কহিল, ‘না বাবা !’ মোল্লা হাঁকিল- ‘তা হলে শালা<br>-->
-            <!--সোজা পথ দেখ !’ গোস্ত-রুটি নিয়া মসজিদে দিল তালা !<br>-->
-            <!--ভুখারী ফিরিয়া চলে,<br>-->
-            <!--চলিতে চলিতে বলে–<br>-->
-            <!--“আশিটা বছর কেটে গেল, আমি ডাকিনি তেমায় কভু,<br>-->
-            <!--আমার ক্ষুধার অন্ন তা’বলে বন্ধ করোনি প্রভু !<br>-->
-            <!--তব মজসিদ মন্দিরে প্রভু নাই মানুষের দাবী,<br>-->
-            <!--মোল্লা-পুরুত লাগায়েছে তার সকল দুয়ারে চাবী !”<br>-->
-            <!--কোথা চেঙ্গিস, গজনী-মামুদ, কোথায় কালাপাহাড় ;<br>-->
-            <!--ভেঙ্গে ফেল ঐ ভজনালয়ের যত তালা-দেওয়া- দ্বার !<br>-->
-            <!--খোদার ঘরে কে কপাট লাগায় কে দেয় সেখানে তালা ?<br>-->
-            <!--সব দ্বার এর খোলা র’বে, চালা হাতুড়ি শাবল চালা !</p>-->
+<!--</div>-->
+
+<div layout:fragment="content">
+    <h4 class="mb-sm-2 mt-2 ml-2 col-md-9 border">&nbsp Muzib Borso </h4>
+    <div class="mb-sm-2 mt-2 ml-2 col-md-9 border">
+
+        <!--<p>‘পুজারী, দুয়ার খোল,<br>
+            ক্ষুধার ঠাকুর দাঁড়ায়ে দুয়ারে পুজার সময় হলো !’<br>
+        </p>
+        <img class="second-slide" th:src="@{/asset/images/nazrul.jpg}" alt="">-->
+
+
+        <p id="demo"></p>
+        <script>
+            // Set the date we're counting down to
+            var countDownDate = new Date("Mar 17, 2020 00:00:00").getTime();
+
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+
+                // Get today's date and time
+                var now = new Date().getTime();
+
+                // Find the distance between now and the count down date
+                var distance = countDownDate - now;
+
+                // Time calculations for days, hours, minutes and seconds
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Output the result in an element with id="demo"
+                document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+                    + minutes + "m " + seconds + "s ";
+
+                // If the count down is over, write some text
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "Happy Muzib Borso";
+                }
+            }, 1000);
+        </script>
+
+        <img class="second-slide" th:src="@{/asset/images/muzib_borso.jpg}" alt="">
+
+
     </div>
 
 </div>

@@ -4,12 +4,12 @@
         var loaderId = "#customloader";
         var formId = "#customloader";
 
+
         $(document).ready(function () {
             $(loaderId).css('visibility', 'hidden'); // Hide element
-
-            debugger
-            var id = [[${studentInfo.id}]];
-//            alert(JSON.stringify(id) + " my id");
+            /*debugger
+            var studentIdSelected = [[${studentInfo.id}]];
+             alert(JSON.stringify(id) + " my id");*/
         });
 
         /* hit controller to create (insert) data in DB */
@@ -32,6 +32,50 @@
                 }
             });
 
+        }
+
+        function deleteStudentById() {
+            var selectedStudent = $("#id").val();
+            swal({
+                title: "Are you sure?",
+                text: "Delete Parmanently.",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+//                buttons: ["foo", "bar"]
+                buttons: {
+                    cancel: "Cancel",
+                    catch: {
+                        text: "Okay",
+                        value: "Okay",
+                    },
+                    defeat: false,
+                },
+            }).then((value) => {
+                switch (value) {
+                case "Okay":
+                    deleteConfirm(selectedStudent);
+                            listStudentFn();
+                    break;
+
+                default:
+                    toasterDisplay("Safely Revoked!");
+                }
+            });
+        }
+
+        function deleteConfirm(selectedStudent) {
+            $.ajax({
+                url: '/admin/delStudent',
+                type: 'POST',
+                dataType: 'json',
+                data: {id: selectedStudent}
+            });
+        }
+
+        function listStudentFn() {
+            var url = "/admin/student";
+            window.open(url, "_self");
         }
 
         function resetStudentList() {

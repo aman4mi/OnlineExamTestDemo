@@ -9,7 +9,7 @@
         <!--</div>-->
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light topnavbar ">
-            <a class="navbar-brand" href="#">Rebel </a>
+            <a class="navbar-brand" href="#">OXD </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -86,6 +86,8 @@
         <script type="text/javascript" th:src="@{/asset/scripts/jquery-3.1.1.min.js}"></script>
         <script type="text/javascript" th:src="@{/asset/scripts/popper.min.js}"></script>
         <script type="text/javascript" th:src="@{/asset/scripts/bootstrap.min.js}"></script>
+        <script type="text/javascript" th:src="@{/asset/scripts/sweetalert.min.js}"></script>
+
 
         <script th:inline="javascript">
 
@@ -100,6 +102,15 @@
                 $(formId).prop("disabled", false);
 //            $("#studentform :input").prop("disabled", false);
                 $("#customloader").css('visibility', 'hidden'); // Show element
+            }
+
+            function toasterDisplay(message) {
+                var x = document.getElementById("snackbar");
+                x.innerText = message ? message : "...............";
+                x.className = "show";
+                setTimeout(function () {
+                    x.className = x.className.replace("show", "");
+                }, 1500);
             }
 
             $(document).ready(function () {

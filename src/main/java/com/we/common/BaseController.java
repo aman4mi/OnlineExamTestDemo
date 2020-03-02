@@ -3,12 +3,18 @@ package com.we.common;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.we.entity.User;
 import com.we.services.service.UserService;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
+import net.sf.jasperreports.export.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Map;
 
 /**
@@ -74,5 +80,38 @@ public class BaseController {
         String getRole = String.valueOf(auth.getAuthorities());
         return "Welcome " + user.getName() + " " + " (" + user.getEmail() + ")" + getRole;
     }
+
+    protected String getSessionUserName() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        return user.getName();
+    }
+
+    protected void exportModeSelector(String xprtMode, JasperPrint jasperPrint, OutputStream outputStream) throws JRException {
+        if (xprtMode.equals("pdf")) {// exports report to pdf
+            JRPdfExporter exporter = new JRPdfExporter();
+            exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+            exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(outputStream));
+            SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
+            exporter.setConfiguration(configuration);
+            exporter.exportReport();
+        } else {// exports report to excel
+//            JRXlsExporter xlsExporter = new JRXlsExporter();
+            JRXlsxExporter xlsExporter = new JRXlsxExporter();
+
+            xlsExporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+            xlsExporter.setExporterOutput(new SimpleOutputStreamExporterOutput(outputStream));
+            SimpleXlsReportConfiguration xlsReportConfiguration = new SimpleXlsReportConfiguration();
+            SimpleXlsxReportConfiguration reportConfig = new SimpleXlsxReportConfiguration();
+            reportConfig.setOnePagePerSheet(false);
+            reportConfig.setRemoveEmptySpaceBetweenRows(true);
+            reportConfig.setDetectCellType(true);
+            reportConfig.setWhitePageBackground(false);
+            xlsExporter.setConfiguration(reportConfig);
+
+            xlsExporter.exportReport();
+        }
+    }
+
 
 }

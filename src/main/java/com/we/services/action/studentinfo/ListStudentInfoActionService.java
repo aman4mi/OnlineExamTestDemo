@@ -18,6 +18,7 @@ import java.util.Map;
 @Component
 public class ListStudentInfoActionService extends BaseService implements ActionInterface {
     private Logger logger = LoggerFactory.getLogger(getClass());
+    private static String SUCCESS_MESSAGE = "Successfully Displayed";
 
     @Override
     public Map executePreCondition(Map parameters) {
@@ -45,7 +46,8 @@ public class ListStudentInfoActionService extends BaseService implements ActionI
 
     @Override
     public Map buildSuccessResult(Map executeResult) {
-        return executeResult;
+        return super.setSuccess(executeResult, SUCCESS_MESSAGE);
+
     }
 
     @Override
