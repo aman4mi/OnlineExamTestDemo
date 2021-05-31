@@ -1,5 +1,7 @@
 package com.we.services;
 
+import java.util.Random;
+
 public class Tools {
 
     private static int valLenStatic = 0;
@@ -86,5 +88,26 @@ public class Tools {
                 outputString = "";
         }
         return outputString;
+    }
+
+    public static String randGen() {
+        final String upperAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        final String lowerAlphabet = "abcdefghijklmnopqrstuvwxyz";
+        final String numbers = "0123456789";
+        final String speecialChars = "({[]})";
+        long current = System.currentTimeMillis();
+        int len = 6;
+
+        String randChars = String.valueOf(current);
+//        String randChars = current + upperAlphabet + lowerAlphabet + numbers;
+        StringBuilder stringBuilder = new StringBuilder();
+        Random random = new Random();
+        stringBuilder.setLength(0);
+
+        for (int i = 0; i < len; i++) {
+            int index = random.nextInt(randChars.length());
+            stringBuilder.append(randChars.charAt(index));
+        }
+        return stringBuilder.toString();
     }
 }

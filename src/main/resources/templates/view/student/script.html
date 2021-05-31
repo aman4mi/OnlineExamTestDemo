@@ -3,7 +3,7 @@
     <script type="text/javascript">
         var loaderId = "#customloader";
         var formId = "#customloader";
-
+        var str = '';
         $(document).ready(function () {
             $(loaderId).css('visibility', 'hidden'); // Hide element
             listStudentFn();
@@ -45,20 +45,41 @@
                             {"data": "course_title"},
                             {"data": "dept_name"},
                             {"data": "semester_info"},
-                            {
+                           {
                                 "data": function (data, type, row, meta) {
 
-                                    var str = data.id + "_" + data.id;
+                                    str = data.id + "_" + data.id;
                                     return '<a href="#"  onclick="generateRpt(' + '\'' + str + '\')">Preview</a>';
+                                    str = '';
                                 }, "title": "Preview"
-                            }
+                            },
+                           {
+                               "render": function (data, type, full, meta) {
+                                   return "<input type='checkbox' name='checkedAll' id='checkedAll' value='1'/>";
+                               },
+                               "sortable": false,
+                               "data": "checkedAll", name: "checkedAll",
+                               "title": "<input onclick='toggle(this,str)' type='checkbox' name='post'/>"
+                           }
+
                         ]
+
+
                     });
+
 
                     toasterDisplay(data.message);
                     stopLoader(formId);
                 }
             });
+        }
+
+        function toggle(source, str) {
+            checkboxes = document.getElementsByName('checkedAll');
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = source.checked;
+            }
+            flag = true;
         }
 
         function setDataToForm(id, ids) {
@@ -127,11 +148,11 @@
         function tableDataLoad(dataObj) {
             $.each(dataObj, function (index, value) {
                 var $row = $('<tr>' +
-                    '<td>' + index + '</td>' +
-                    '<td>' + dataObj[index].student_id + '</td>' +
-                    '<td>' + dataObj[index].student_name + '</td>' +
-                    '<td>' + value.course_id + '</td>' +
-                    '</tr>');
+                        '<td>' + index + '</td>' +
+                        '<td>' + dataObj[index].student_id + '</td>' +
+                        '<td>' + dataObj[index].student_name + '</td>' +
+                        '<td>' + value.course_id + '</td>' +
+                        '</tr>');
                 $('table> tbody').append($row);
             });
         }

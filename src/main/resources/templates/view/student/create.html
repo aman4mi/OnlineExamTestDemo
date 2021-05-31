@@ -4,7 +4,7 @@
 
             <div class="mt-1 col">
                 <label class="col-md-8">Member Table</label>
-                <a class="btn btn-outline-secondary pull-right float-right" href="/admin/createStudent">Create</a>
+                <a class="btn btn-outline-secondary pull-right float-right" th:href="@{/admin/createStudent}">Create</a>
             </div>
 
         <div class="m-2 ">
@@ -20,6 +20,9 @@
                     <th>Dept</th>
                     <th>Semester</th>
                     <th>Preview</th>
+<!--                    <th>...</th>-->
+                    <th><input type="checkbox"  name="checkedAll" id="checkedAll" class="checkbox" value="All">All</th>
+
 
                 </tr>
                 </thead>
@@ -33,6 +36,7 @@
                     <th>Dept</th>
                     <th>Semester</th>
                     <th>Preview</th>
+                    <th>...</th>
                 </tr>
                 </tfoot>
             </table>

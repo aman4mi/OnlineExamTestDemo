@@ -4,6 +4,7 @@ import com.we.common.ActionInterface;
 import com.we.entity.StudentInfo;
 import com.we.repository.StudentInfoRepository;
 import com.we.services.BaseService;
+import com.we.services.Tools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -49,7 +50,7 @@ public class CreateStudentInfoActionService extends BaseService implements Actio
             studentInfo = new StudentInfo();
         }
 
-        studentInfo.setStudentId((String) previousResult.get("studentId"));
+        studentInfo.setStudentId((String) previousResult.get("studentId") + " OXD" + Tools.randGen());
         studentInfo.setStudentName((String) previousResult.get("studentName"));
         studentInfo.setCourseId((String) previousResult.get("courseId"));
         studentInfo.setCourseTitle((String) previousResult.get("courseTitle"));
