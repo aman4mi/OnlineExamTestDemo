@@ -46,11 +46,14 @@ public class CreateStudentInfoActionService extends BaseService implements Actio
             long id = Long.parseLong((String) previousResult.get("id"));
             studentInfo = studentInfoRepository.findById(id);
             previousResult.put("idAvailable", "true");
+
+            studentInfo.setStudentId((String) previousResult.get("studentId"));
+
         } else {
             studentInfo = new StudentInfo();
+            studentInfo.setStudentId((String) previousResult.get("studentId") + " OXD" + Tools.randGen());
         }
 
-        studentInfo.setStudentId((String) previousResult.get("studentId") + " OXD" + Tools.randGen());
         studentInfo.setStudentName((String) previousResult.get("studentName"));
         studentInfo.setCourseId((String) previousResult.get("courseId"));
         studentInfo.setCourseTitle((String) previousResult.get("courseTitle"));
