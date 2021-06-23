@@ -4,17 +4,34 @@
         var loaderId = "#customloader";
         var formId = "#customloader";
         var str = '';
+        var urlContext = '';
+
+        /*var baseUrlContext = window.location.origin;
+        console.log("base Url showing in show page:  " + baseUrlContext)*/
+
         $(document).ready(function () {
             $(loaderId).css('visibility', 'hidden'); // Hide element
-            listStudentFn();
+
+            /*var url7 = window.location.href
+            var cc1 = getNthIndex(url7, "/", 1)
+            var cc2 = getNthIndex(url7, "/", 4)
+            console.log("BAL ::: = " + url7.substring(cc1, cc2))*/
+
+            var tempUrlContext = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))
+            tempUrlContext == "/oed" ?
+                urlContext = window.location.origin + "" + window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))
+                : urlContext = window.location.origin
+            listStudentFn(urlContext);
         });
 
-        function listStudentFn() {
+        function listStudentFn(urlContext) {
+            /* url1 = url1.replace("/admin", " ");
+             url1 = url1.replace("/student", " ");*/
             startLoader(formId);
 
             $.ajax({
                 type: "get",
-                url: "/admin/listStudent",
+                url: urlContext + "/admin/listStudent",
                 data: "",
                 dataType: "json",
                 success: function (data) {
@@ -45,7 +62,7 @@
                             {"data": "course_title"},
                             {"data": "dept_name"},
                             {"data": "semester_info"},
-                           {
+                            {
                                 "data": function (data, type, row, meta) {
 
                                     str = data.id + "_" + data.id;
@@ -53,20 +70,20 @@
                                     str = '';
                                 }, "title": "Preview"
                             },
-                           {
-                               "render": function (data, type, full, meta) {
-                                   return "<input type='checkbox' name='checkedAll' id='checkedAll' value='1'/>";
-                               },
-                               "sortable": false,
-                               "data": "checkedAll", name: "checkedAll",
-                               "title": "<input onclick='toggle(this,str)' type='checkbox' name='post'/>"
-                           }
+                            {
+                                "render": function (data, type, full, meta) {
+                                    return "<input type='checkbox' name='checkedAll' id='checkedAll' value='1'/>";
+                                },
+                                "sortable": false,
+                                "data": "checkedAll", name: "checkedAll",
+                                "title": "<input onclick='toggle(this,str)' type='checkbox' name='post'/>"
+                            }
 
                         ],
                         "columnDefs": [
 
                             {
-                                "targets": [ 0 ],
+                                "targets": [0],
                                 "visible": false
                             }
                         ]
@@ -91,13 +108,13 @@
 
         function setDataToForm(id, ids) {
             $.ajax({
-                url: '/admin/selectStudent',
+                url: urlContext + '/admin/selectStudent',
                 type: 'POST',
                 dataType: 'json',
                 data: {id: id},
                 success: function (result) {
 
-                    var url = "/admin/editStudent?id=" + id;
+                    var url = urlContext + "/admin/editStudent?id=" + id;
 //                    window.open(url, "_self");
 
                     $.post(url, function (data) {
@@ -123,7 +140,8 @@
             data = data + "&exportMode=" + "pdf";
             // data = data + "&exportMode=" + "xls";
 
-            var url = "/admin/rptStudent?" + data;
+            var url = urlContext + "/admin/rptStudent?" + data;
+
             window.open(url);
 
         }
@@ -133,7 +151,7 @@
             startLoader(formId);
             $.ajax({
                 type: "get",
-                url: "/admin/listStudent",
+                url: urlContext + "/admin/listStudent",
                 data: "",
                 dataType: "json",
                 success: function (data) {
@@ -155,13 +173,26 @@
         function tableDataLoad(dataObj) {
             $.each(dataObj, function (index, value) {
                 var $row = $('<tr>' +
-                        '<td>' + index + '</td>' +
-                        '<td>' + dataObj[index].student_id + '</td>' +
-                        '<td>' + dataObj[index].student_name + '</td>' +
-                        '<td>' + value.course_id + '</td>' +
-                        '</tr>');
+                    '<td>' + index + '</td>' +
+                    '<td>' + dataObj[index].student_id + '</td>' +
+                    '<td>' + dataObj[index].student_name + '</td>' +
+                    '<td>' + value.course_id + '</td>' +
+                    '</tr>');
                 $('table> tbody').append($row);
             });
+        }
+
+        function getNthIndex(s, t, n) {
+            var count = 0;
+            for (var i = 0; i < s.length; i++) {
+                if (s[i] == t) {
+                    count++;
+                    if (count == n) {
+                        return i;
+                    }
+                }
+            }
+            return -1;
         }
 
 

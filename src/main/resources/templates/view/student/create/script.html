@@ -4,6 +4,15 @@
         var loaderId = "#customloader";
         var formId = "#customloader";
 
+        var baseUrlContext // = window.location.origin;
+        var urlContext = window.location.origin + "" + window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))
+        baseUrlContext = urlContext
+        console.log("base Url showing in create page:  " + baseUrlContext)
+
+        var url6 = window.location.href.replace(window.location.href.replace(window.location.origin, " ").trim(), " ").trim()
+        console.log(" Url6 showing in create page:  " + url6)
+        debugger
+
         $(document).ready(function () {
             $(loaderId).css('visibility', 'hidden'); // Hide element
         });
@@ -15,7 +24,8 @@
 
             $.ajax({
                 type: "post",
-                url: "/admin/saveStudent",
+                // url: url6 + "/admin/saveStudent",
+                url: baseUrlContext + "/admin/saveStudent",
                 data: formData,
                 dataType: "json",
                 success: function (data) {

@@ -4,6 +4,10 @@
         var loaderId = "#customloader";
         var formId = "#customloader";
 
+        var baseUrlContext //= window.location.origin;
+        var urlContext = window.location.origin + "" + window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))
+        baseUrlContext = urlContext
+        console.log("base Url showing in edit page:  " + baseUrlContext)
 
         $(document).ready(function () {
             $(loaderId).css('visibility', 'hidden'); // Hide element
@@ -19,13 +23,13 @@
 
             $.ajax({
                 type: "post",
-                url: "/admin/saveStudent",
+                url: baseUrlContext + "/admin/saveStudent",
                 data: formData,
                 dataType: "json",
                 success: function (data) {
                     swal("Welcome ", data.message);
 
-                    var url = "/admin/student";
+                    var url = baseUrlContext + "/admin/student";
                     window.open(url, "_self");
 
                     stopLoader(formId);
@@ -53,20 +57,20 @@
                 },
             }).then((value) => {
                 switch (value) {
-                case "Okay":
-                    deleteConfirm(selectedStudent);
-                            listStudentFn();
-                    break;
+                    case "Okay":
+                        deleteConfirm(selectedStudent);
+                        listStudentFn();
+                        break;
 
-                default:
-                    toasterDisplay("Safely Revoked!");
+                    default:
+                        toasterDisplay("Safely Revoked!");
                 }
             });
         }
 
         function deleteConfirm(selectedStudent) {
             $.ajax({
-                url: '/admin/delStudent',
+                url: baseUrlContext + '/admin/delStudent',
                 type: 'POST',
                 dataType: 'json',
                 data: {id: selectedStudent}
@@ -74,7 +78,7 @@
         }
 
         function listStudentFn() {
-            var url = "/admin/student";
+            var url = baseUrlContext + "/admin/student";
             window.open(url, "_self");
         }
 
