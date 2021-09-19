@@ -1,0 +1,245 @@
+<div class="container" th:fragment="firstscript" xmlns:th="http://www.w3.org/1999/xhtml">
+    <script type="text/javascript">
+
+        var loaderId = "#customloader";
+        var str = '';
+        var urlContext = '';
+        var dataTableObj = '';
+
+        $(document).ready(function () {
+            $(loaderId).css('visibility', 'hidden'); // Hide element
+            var tempUrlContext = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))
+            tempUrlContext == "/oed" ?
+                urlContext = window.location.origin + "" + window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))
+                : urlContext = window.location.origin
+            initResultTable(urlContext);
+        });
+
+        function initResultTable(urlContext) {
+            $.ajax({
+                type: "get",
+                url: urlContext + "/admin/listResult",
+                data: "",
+                dataType: "json",
+                success: function (data) {
+                    var dataObj = data.queryList;
+                    dataTableObj = $('#resultTable').DataTable({
+                        "aaData": dataObj,
+                        "columns": [
+                            {"data": "id"},
+                            {"data": "roll_no"},
+                            {"data": ""},
+                            {"data": ""},
+                            // {"data": ""},
+                            // {"data": ""},
+                            // {"data": ""},
+                            // {"data": ""},
+                            // {"data": ""},
+                            // {"data": ""}
+                        ],
+                        "columnDefs": [
+                            {
+                                "targets": [0],
+                                "visible": false
+                            },
+                            {
+                                "targets": [2],
+                                "render": function (data, type, row, meta) {
+                                    return "<input type='text' class='form-control input-fields' onkeyup=\"this.value=this.value.replace(/[^\\d]/,'')\" autocomplete='off' tabindex='1' style='width: 70px' " +
+                                        "name='q1_" + row.id + "' id='q1_" + row.id + "'" + "maxlength='5' />";
+                                }, "title": "Q1"
+                            },
+                            {
+                                "targets": [3],
+                                "render": function (data, type, row, meta) {
+                                    return "<input type='text' class='form-control input-fields'  autocomplete='off' tabindex='1' style='width: 70px' " +
+                                        "name='q2_" + row.id + "' id='q2_" + row.id + "'" + "maxlength='5' " +
+                                        "+ onkeyup=\"this.value=this.value.replace(/[^\\d]/,'')\" />";
+                                }, "title": "Q2"
+                            }
+                            // ,
+                            // {
+                            //     "targets": [4],
+                            //     "render": function (data, type, row, meta) {
+                            //         return "<input type='text' class='form-control input-fields'  autocomplete='off' tabindex='-1' style='width: 70px' " +
+                            //             "name='sub_two" + row.id + "' id='sub_two" + row.id + "'" + "maxlength='5'+" +
+                            //             "\"+ onkeyup=\"this.value=this.value.replace(/[^\\d]/,'')\" />";
+                            //     }, "title": "Q3"
+                            // },
+                            // // {
+                            // //     "targets": [5],
+                            // //     "render": function (data, type, row, meta) {
+                            // //         return "<input type='text' class='form-control input-fields'  autocomplete='off' tabindex='-1' style='width: 70px' " +
+                            // //             "name='sub_two" + row.id + "' id='sub_two" + row.id + "'" + "maxlength='5' +" +
+                            // //             "\"+ onkeyup=\"this.value=this.value.replace(/[^\\d]/,'')\" />";
+                            // //     }, "title": "Q4"
+                            // // },
+                            // // {
+                            // //     "targets": [6],
+                            // //     "render": function (data, type, row, meta) {
+                            // //         return "<input type='text' class='form-control input-fields'  autocomplete='off' tabindex='-1' style='width: 70px' " +
+                            // //             "name='sub_two" + row.id + "' id='sub_two" + row.id + "'" + "maxlength='5'+" +
+                            // //             "\"+ onkeyup=\"this.value=this.value.replace(/[^\\d]/,'')\" />";
+                            // //     }, "title": "Q5"
+                            // // },
+                            // // {
+                            // //     "targets": [7],
+                            // //     "render": function (data, type, row, meta) {
+                            // //         return "<input type='text' class='form-control input-fields'  autocomplete='off' tabindex='-1' style='width: 70px' " +
+                            // //             "name='sub_two" + row.id + "' id='sub_two" + row.id + "'" + "maxlength='5'+" +
+                            // //             "\"+ onkeyup=\"this.value=this.value.replace(/[^\\d]/,'')\" />";
+                            // //     }, "title": "Q6"
+                            // // },
+                            // // {
+                            // //     "targets": [8],
+                            // //     "render": function (data, type, row, meta) {
+                            // //         return "<input type='text' class='form-control input-fields'  autocomplete='off' tabindex='-1' style='width: 70px' " +
+                            // //             "name='sub_two" + row.id + "' id='sub_two" + row.id + "'" + "maxlength='5'+" +
+                            // //             "\"+ onkeyup=\"this.value=this.value.replace(/[^\\d]/,'')\" />";
+                            // //     }, "title": "Q7"
+                            // // },
+                            // // {
+                            // //     "targets": [9],
+                            // //     "render": function (data, type, row, meta) {
+                            // //         return "<input type='text' class='form-control input-fields'  autocomplete='off' tabindex='-1' style='width: 70px' " +
+                            // //             "name='sub_two" + row.id + "' id='sub_two" + row.id + "'" + "maxlength='5' +" +
+                            // //             "\"+ onkeyup=\"this.value=this.value.replace(/[^\\d]/,'')\"/>";
+                            // //     }, "title": "Q8"
+                            // // }
+                        ]
+                    });
+                }
+            });
+        }
+
+        function resultSubmit() {
+            var lengthData = dataTableObj.rows().data().length;
+            var data = $('#resultForm').serialize();
+            var id = [];
+            var roll_no = [];
+            for (var i = 0; i < lengthData; i++) {
+                id[i] = dataTableObj.rows().data()[i].id;
+                roll_no[i] = dataTableObj.rows().data()[i].roll_no;
+                var j = Number(i + 1);
+                data = data + '&id_' + j + ' =' + id[i];
+                data = data + '&roll_no_' + j + '=' + roll_no[i];
+                // data = data + '&items.q1_[' + i + ']=' + q2[i];
+                // data = data + '&items.id_[' + i + ']=' + id[i]; // valid format
+            }
+            var url = urlContext + '/admin/createResult';
+            console.log(url + "serial data second ........ " + data);
+            debugger
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                dataType: 'json',
+                data: data,
+                success: function () {
+                    alert("Hi");
+                }
+            });
+
+        }
+
+
+        //         function initializeGrid() {
+        //             var table = $('#resultTable');
+        //             currencyDenominationDetailsGrid = $('#currencyGrid').dataTable({
+        //                 "columns": [
+        //                     {"name": "id", "data": "id", "title": "ID", "className": "datatable-heading"},
+        //                     {
+        //                         "name": "denomination_name",
+        //                         "data": "denomination_name",
+        //                         "title": "Unit Name",
+        //                         "className": "datatable-heading"
+        //                     },
+        //                     {
+        //                         "name": "quantity",
+        //                         "data": "quantity",
+        //                         "title": "Quantity",
+        //                         "className": "datatable-heading"
+        //                     },
+        //                     {
+        //                         "name": "totalamount",
+        //                         "data": "totalamount",
+        //                         "title": "Total",
+        //                         "className": "datatable-heading"
+        //                     }
+        //                 ],
+        //                 "columnDefs": [
+        //                     {
+        //                         "targets": [0],
+        //                         "visible": false
+        //                     },
+        //                     {
+        //                         "targets": [2],
+        //                         "render": function (data, type, row, meta) {
+        // //                        alert(JSON.stringify(data))
+        //                             return "<input type='text' class='form-control input-fields' autocomplete='off' tabindex='-1' style='width: 70px' " +
+        //                                 "name='currentPaymentAmount" + row.id + "' id='currentPaymentAmount" + row.id + "'" +
+        //                                 "onkeyup='calculatePayment(this.value)'  onkeypress=' return validateFloatKeyPress(this, event)' maxlength='1' />";
+        //
+        //                         }, "title": "Quantity"
+        //                     },
+        //                     {
+        //                         "targets": [3],
+        //                         "render": function (data, type, row, meta) {
+        //                             return "<input type='text' class='form-control input-fields' readonly autocomplete='off' tabindex='-1' style='width: 70px' " +
+        //                                 "name='totalamount" + row.id + "' id='totalamount" + row.id + "'" +
+        //                                 "onkeyup='' onkeypress=' return validateFloatKeyPress(this, event)' maxlength='1' />";
+        //                         }, "title": "Total"
+        //                     }
+        //                 ],
+        //                 "order": [
+        //                     [0, "asc"]
+        //                 ],
+        //                 "info": false,
+        //                 "paging": false,
+        //                 "ordering": false,
+        //                 "searching": false
+        //             });
+        //
+        //             $('#currencyGrid tbody').on('click', 'tr', function () {
+        //                 if ($(this).hasClass('row_selected')) {
+        //                     $(this).removeClass('row_selected');
+        //                 } else {
+        //                     currencyDenominationDetailsGrid.$('tr.row_selected').removeClass('row_selected');
+        //                     $(this).addClass('row_selected');
+        //                 }
+        //             });
+        //         }
+
+        // function setDataToForm(id, ids) {
+        //     $.ajax({
+        //         url: urlContext + '/admin/selectStudent',
+        //         type: 'POST',
+        //         dataType: 'json',
+        //         data: {id: id},
+        //         success: function (result) {
+        //             var url = urlContext + "/admin/editStudent?id=" + id;
+        //             $.post(url, function (data) {
+        //                 var w = window.open('about:blank', "_self");
+        //                 w.document.open();
+        //                 w.document.write(data);
+        //                 w.document.close();
+        //             });
+        //
+        //         }
+        //     });
+        // }
+        // function tableDataLoad(dataObj) {
+        //     $.each(dataObj, function (index, value) {
+        //         var $row = $('<tr>' +
+        //             '<td>' + index + '</td>' +
+        //             '<td>' + dataObj[index].student_id + '</td>' +
+        //             '<td>' + dataObj[index].student_name + '</td>' +
+        //             '<td>' + value.course_id + '</td>' +
+        //             '</tr>');
+        //         $('table> tbody').append($row);
+        //     });
+        // }
+
+    </script>
+
+</div>

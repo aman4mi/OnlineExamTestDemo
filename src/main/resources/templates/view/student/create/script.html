@@ -4,8 +4,15 @@
         var loaderId = "#customloader";
         var formId = "#customloader";
 
-        var baseUrlContext // = window.location.origin;
+        /*var baseUrlContext // = window.location.origin;
         var urlContext = window.location.origin + "" + window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))
+        baseUrlContext = urlContext*/
+
+        var tempUrlContext = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))
+        tempUrlContext == "/oed" ?
+            urlContext = window.location.origin + "" + window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))
+            : urlContext = window.location.origin
+
         baseUrlContext = urlContext
         console.log("base Url showing in create page:  " + baseUrlContext)
 
