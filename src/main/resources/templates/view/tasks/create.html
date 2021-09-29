@@ -1,0 +1,36 @@
+<div class="container" th:fragment="firstcreate" xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <div class=" mb-sm-2 mt-2 border" style="">
+
+        <div class="mt-1 col">
+            <label class=" text-info text-xl-center text-uppercase font-italic">Daily Task's List</label>
+            <button type="button" class=" btn btn-outline-danger btn-m float-right "
+                    onclick="generateRpt();"><i
+                    class="fa fa-check"></i>Report
+            </button>
+
+            <a class="btn btn-outline-info pull-right float-right" th:href="@{/admin/tasks/create}">Create</a>
+
+        </div>
+
+        <div class="m-2 ">
+
+            <table id="table_task" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Date</th>
+                    <th>Task Name</th>
+                    <th>Service For</th>
+                    <th>Solved By</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Remarks</th>
+                </tr>
+                </thead>
+            </table>
+
+        </div>
+    </div>
+
+</div>

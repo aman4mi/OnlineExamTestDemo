@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main_custom">
+<head>
+    <title>Tasks</title>
+</head>
+
+
+<div layout:fragment="content">
+    <!-- my custom fragments links here-->
+    <div th:replace="view/tasks/script :: firstscript"></div>
+    <div th:replace="view/tasks/create :: firstcreate"></div>
+
+</div>
+
+
+</html>
+
+
+<!--<html>-->
+<!--<head>-->
+<!--    <meta charset="utf-8" />-->
+<!--    <title>Datepicker example</title>-->
+<!--    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>-->
+<!--    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>-->
+<!--    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />-->
+<!--</head>-->
+<!--<body>-->
+<!--<input id="datepicker" width="276" />-->
+<!--<script>-->
+<!--    $('#datepicker').datepicker();-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->

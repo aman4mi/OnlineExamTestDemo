@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="taskrpt1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c0482a8c-35ec-4c30-b9a6-274834e46c49">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from daily_task]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="business_date" class="java.lang.String"/>
+	<field name="created_by" class="java.lang.String"/>
+	<field name="created_on" class="java.lang.String"/>
+	<field name="ended_at" class="java.lang.String"/>
+	<field name="remarks" class="java.lang.String"/>
+	<field name="solved_by" class="java.lang.String"/>
+	<field name="started_at" class="java.lang.String"/>
+	<field name="status" class="java.lang.String"/>
+	<field name="task_for" class="java.lang.String"/>
+	<field name="task_id" class="java.lang.String"/>
+	<field name="task_name" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="90" y="0" width="465" height="36" uuid="ee2b7749-de65-4bda-92f6-e781e56918f9"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Algerian" size="20" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[BCPS IT WING WORK LOG]]></text>
+			</staticText>
+			<image>
+				<reportElement x="2" y="0" width="88" height="36" uuid="e85e044a-dfc6-4f8f-8545-17bd7c65b90a"/>
+				<imageExpression><![CDATA["C:\\Users\\Aman\\Pictures\\bcps_logo.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement x="27" y="0" width="63" height="18" uuid="16840dc2-92de-4d91-b447-9f9ad04d8355"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineStyle="Dashed"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed"/>
+					<leftPen lineWidth="0.5" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed"/>
+					<rightPen lineWidth="0.5" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Broadway" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="0" width="85" height="18" uuid="3fb0ee9d-7eba-43c2-8449-2ec25ef517ff"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineStyle="Dashed"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed"/>
+					<leftPen lineWidth="0.5" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed"/>
+					<rightPen lineWidth="0.5" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Broadway" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="0" width="74" height="18" uuid="fbceb10c-c0a8-4920-af1b-da1b3d463ac6"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineStyle="Dashed"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed"/>
+					<leftPen lineWidth="0.5" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed"/>
+					<rightPen lineWidth="0.5" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Broadway" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[For]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="249" y="0" width="81" height="18" uuid="5bdd4d8a-3e1a-448b-abc7-7d14a71da471"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineStyle="Dashed"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed"/>
+					<leftPen lineWidth="0.5" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed"/>
+					<rightPen lineWidth="0.5" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Broadway" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Solved By]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="0" width="75" height="18" uuid="ac2f7649-cb11-49cd-b402-bedcc21fcc64"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineStyle="Dashed"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed"/>
+					<leftPen lineWidth="0.5" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed"/>
+					<rightPen lineWidth="0.5" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Broadway" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Start Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="0" width="70" height="18" uuid="fbd223fd-aa37-42de-8a37-62d05ec9babd"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineStyle="Dashed"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed"/>
+					<leftPen lineWidth="0.5" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed"/>
+					<rightPen lineWidth="0.5" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Broadway" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[End Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="475" y="0" width="80" height="18" uuid="3f797129-a578-4260-b69e-27dc564e7614"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineStyle="Dashed"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed"/>
+					<leftPen lineWidth="0.5" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed"/>
+					<rightPen lineWidth="0.5" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Broadway" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Remarks]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="27" height="18" uuid="5c0dd2c3-3250-4389-8181-bbfb745f0957"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineStyle="Dashed"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed"/>
+					<leftPen lineWidth="0.5" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed"/>
+					<rightPen lineWidth="0.5" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Broadway" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[SL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="27" y="0" width="63" height="18" isPrintWhenDetailOverflows="true" uuid="67a885a2-dee5-4558-bbeb-124a07d6ec96"/>
+				<box leftPadding="2" rightPadding="2">
+					<pen lineWidth="0.25" lineStyle="Dotted"/>
+					<topPen lineWidth="0.25" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.25" lineStyle="Dotted"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.25" lineStyle="Dotted"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{business_date}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="27" height="18" isPrintWhenDetailOverflows="true" uuid="b8eee52f-126f-44b8-b2c6-254d43960754"/>
+				<box leftPadding="2" rightPadding="2">
+					<pen lineWidth="0.25" lineStyle="Dotted"/>
+					<topPen lineWidth="0.25" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.25" lineStyle="Dotted"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.25" lineStyle="Dotted"/>
+				</box>
+				<textFieldExpression><![CDATA[$V{PAGE_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="90" y="0" width="85" height="18" isPrintWhenDetailOverflows="true" uuid="9d597a4f-f8ce-4a51-83ad-381652ac7a88"/>
+				<box leftPadding="2" rightPadding="2">
+					<pen lineWidth="0.25" lineStyle="Dotted"/>
+					<topPen lineWidth="0.25" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.25" lineStyle="Dotted"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.25" lineStyle="Dotted"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{task_name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="175" y="0" width="74" height="18" isPrintWhenDetailOverflows="true" uuid="61c1d2e3-b72b-49d6-b7cd-644fa11d1b09"/>
+				<box leftPadding="2" rightPadding="2">
+					<pen lineWidth="0.25" lineStyle="Dotted"/>
+					<topPen lineWidth="0.25" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.25" lineStyle="Dotted"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.25" lineStyle="Dotted"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{task_for}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="249" y="0" width="81" height="18" isPrintWhenDetailOverflows="true" uuid="c375db64-109b-4874-91f5-3c013004eead"/>
+				<box leftPadding="2" rightPadding="2">
+					<pen lineWidth="0.25" lineStyle="Dotted"/>
+					<topPen lineWidth="0.25" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.25" lineStyle="Dotted"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.25" lineStyle="Dotted"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{solved_by}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="330" y="0" width="75" height="18" isPrintWhenDetailOverflows="true" uuid="54741388-13e0-4973-ab42-a0ac530e510e"/>
+				<box leftPadding="2" rightPadding="2">
+					<pen lineWidth="0.25" lineStyle="Dotted"/>
+					<topPen lineWidth="0.25" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.25" lineStyle="Dotted"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.25" lineStyle="Dotted"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{started_at}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="405" y="0" width="70" height="18" isPrintWhenDetailOverflows="true" uuid="270786d3-dc02-4b53-9a1b-3198ddf54465"/>
+				<box leftPadding="2" rightPadding="2">
+					<pen lineWidth="0.25" lineStyle="Dotted"/>
+					<topPen lineWidth="0.25" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.25" lineStyle="Dotted"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.25" lineStyle="Dotted"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{ended_at}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="475" y="0" width="80" height="18" isPrintWhenDetailOverflows="true" uuid="c685e1b7-7df4-416e-8a5f-67bbdac12475"/>
+				<box leftPadding="2" rightPadding="2">
+					<pen lineWidth="0.25" lineStyle="Dotted"/>
+					<topPen lineWidth="0.25" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.25" lineStyle="Dotted"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.25" lineStyle="Dotted"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{remarks}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="51" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="52" height="15" uuid="f350d8a9-6dbf-42a7-b025-9d7b5c6c4b01"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="52" y="0" width="38" height="15" uuid="33d2bb13-a8fa-45d3-bbf9-6325536954ae"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="90" y="0" width="465" height="15" uuid="8964c156-e1e1-4e0f-9d7c-f77002045123"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font fontName="Agency FB" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Powered By IT WING]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

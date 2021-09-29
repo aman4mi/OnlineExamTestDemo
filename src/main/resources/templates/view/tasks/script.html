@@ -1,0 +1,115 @@
+<div class="container" th:fragment="firstscript" xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <script type="text/javascript">
+        var loaderId = "#customloader";
+        var formId = "#customloader";
+        var str = '';
+        var urlContext = '';
+
+        /*var baseUrlContext = window.location.origin;
+        console.log("base Url showing in show page:  " + baseUrlContext)*/
+
+        $(document).ready(function () {
+            $(loaderId).css('visibility', 'hidden'); // Hide element
+            var tempUrlContext = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))
+            tempUrlContext == "/oed" ?
+                urlContext = window.location.origin + "" + window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))
+                : urlContext = window.location.origin
+            listTaskFn(urlContext);
+        });
+
+        function listTaskFn(urlContext) {
+            startLoader(formId);
+
+            $.ajax({
+                type: "get",
+                url: urlContext + "/admin/tasks/list",
+                data: "",
+                dataType: "json",
+                success: function (data) {
+                    var dataObj = data.queryList;
+                    console.log(dataObj);
+                    $('#table_task').DataTable({
+                        "aaData": dataObj,
+                        "columns": [
+                            {"data": "id"},
+                            {
+                                "data": function (data, type, row, meta) {
+                                    return '<a href="#"  onclick="setDataToForm(' + '\'' + data.id + '\',' + '\'' + data.id + '\')">' + data.business_date + '</a>';
+                                }
+                            },
+
+                            {"data": "task_name"},
+                            {"data": "task_for"},
+                            {"data": "solved_by"},
+                            {"data": "started_at"},
+                            {"data": "ended_at"},
+                            {"data": "remarks"}
+                        ],
+                        "columnDefs": [
+                            {
+                                "targets": [0],
+                                "visible": false
+                            }
+                        ]
+                    });
+                    toasterDisplay(data.message);
+                    stopLoader(formId);
+                }
+            });
+        }
+
+        function toggle(source, str) {
+            checkboxes = document.getElementsByName('checkedAll');
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = source.checked;
+            }
+            flag = true;
+        }
+
+        function setDataToForm(id, ids) {
+//             $.ajax({
+//                 url: urlContext + '/admin/selectStudent',
+//                 type: 'POST',
+//                 dataType: 'json',
+//                 data: {id: id},
+//                 success: function (result) {
+//
+//                     var url = urlContext + "/admin/editStudent?id=" + id;
+// //                    window.open(url, "_self");
+//
+//                     $.post(url, function (data) {
+//                         var w = window.open('about:blank', "_self");
+//                         w.document.open();
+//                         w.document.write(data);
+//                         w.document.close();
+//                     });
+//
+//                 }
+//             });
+        }
+
+        function generateRpt() {
+           /* var res = item_id.split("_");
+            if (res[0] == "") {
+                showError("Please select a serial");
+                return;
+            }*/
+            toasterDisplay("Processing...");
+            var data = '';
+            // data = data + "id=" + res[0];
+            data = data + "&exportMode=" + "pdf";
+
+            var url = urlContext + "/admin/tasks/report/generate?" + data;
+
+            window.open(url);
+
+        }
+
+        function tableDataReset() {
+            $("#listStudentTable").find("tr:gt(0)").remove();
+        }
+
+    </script>
+
+</div>

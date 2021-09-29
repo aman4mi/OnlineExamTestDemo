@@ -1,0 +1,99 @@
+<div class="container" th:fragment="editscript" xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <script type="text/javascript">
+        var loaderId = "#customloader";
+        var formId = "#customloader";
+
+        /*var baseUrlContext //= window.location.origin;
+        var urlContext = window.location.origin + "" + window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))
+        baseUrlContext = urlContext*/
+
+        var tempUrlContext = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))
+        tempUrlContext == "/oed" ?
+            urlContext = window.location.origin + "" + window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))
+            : urlContext = window.location.origin
+
+        baseUrlContext = urlContext
+        console.log("base Url showing in edit page:  " + baseUrlContext)
+
+        $(document).ready(function () {
+            $(loaderId).css('visibility', 'hidden'); // Hide element
+            /*debugger
+            var studentIdSelected = [[${studentInfo.id}]];
+             alert(JSON.stringify(id) + " my id");*/
+        });
+
+        /* hit controller to create (insert) data in DB */
+        function updateStudentFn() {
+            var formData = $("#studentformEdit").serialize();
+            startLoader(formId);
+
+            $.ajax({
+                type: "post",
+                url: baseUrlContext + "/admin/saveStudent",
+                data: formData,
+                dataType: "json",
+                success: function (data) {
+                    swal("Welcome ", data.message);
+
+                    var url = baseUrlContext + "/admin/student";
+                    window.open(url, "_self");
+
+                    stopLoader(formId);
+                }
+            });
+
+        }
+
+        function deleteStudentById() {
+            var selectedStudent = $("#id").val();
+            swal({
+                title: "Are you sure?",
+                text: "Delete Parmanently.",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+//                buttons: ["foo", "bar"]
+                buttons: {
+                    cancel: "Cancel",
+                    catch: {
+                        text: "Okay",
+                        value: "Okay",
+                    },
+                    defeat: false,
+                },
+            }).then((value) => {
+                switch (value) {
+                    case "Okay":
+                        deleteConfirm(selectedStudent);
+                        listStudentFn();
+                        break;
+
+                    default:
+                        toasterDisplay("Safely Revoked!");
+                }
+            });
+        }
+
+        function deleteConfirm(selectedStudent) {
+            $.ajax({
+                url: baseUrlContext + '/admin/delStudent',
+                type: 'POST',
+                dataType: 'json',
+                data: {id: selectedStudent}
+            });
+        }
+
+        function listStudentFn() {
+            var url = baseUrlContext + "/admin/student";
+            window.open(url, "_self");
+        }
+
+        function resetStudentList() {
+
+        }
+
+
+    </script>
+
+</div>

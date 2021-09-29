@@ -9,7 +9,7 @@
         <!--</div>-->
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light topnavbar ">
-            <a class="navbar-brand" href="#">OXD </a>
+            <a class="navbar-brand" href="#">ITW </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -25,8 +25,11 @@
                         </a>
                         <div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdown">
                             <a class="" th:href="@{/admin/student}">Student</a>
-<!--                            <a class="" href="/admin/student">Student</a>-->
+                            <!--                            <a class="" href="/admin/student">Student</a>-->
                             <a class="" th:href="@{/admin/studentRestShow}">Student Rest</a>
+
+                            <a class="" th:href="@{/admin/tasks/show}">Task's</a>
+
                         </div>
                     </li>
 
@@ -56,7 +59,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="" th:src="@{/asset/images/logout.png}" width="15" height="15" alt=" ">
+                                <img class="" th:src="@{/asset/images/logout.png}" width="35" height="35" alt="Logout">
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/registration">Registration</a>
@@ -77,8 +80,10 @@
     <div class="" th:fragment="gcss">
         <link rel="stylesheet" type="text/css" th:href="@{/asset/navcss/bootstrap.min.css}"/>
         <!--datatable-->
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"/>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+        <link rel="stylesheet" type="text/css"
+              href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css"
+              href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
 
     </div>
 
@@ -121,9 +126,13 @@
         </script>
 
         <!--datatable-->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+        <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+        <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css"/>
 
     </div> <!--    end of div of fragment gscripts-->
 

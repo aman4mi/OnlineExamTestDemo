@@ -1,0 +1,47 @@
+<div class="container" th:fragment="firstscript" xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <script type="text/javascript">
+
+        var loaderId = "#customloader";
+        var formId = "#customloader";
+        var tempUrlContext = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))
+        tempUrlContext == "/oed" ?
+            urlContext = window.location.origin + "" + window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))
+            : urlContext = window.location.origin
+
+        baseUrlContext = urlContext
+
+        $(document).ready(function () {
+            $(loaderId).css('visibility', 'hidden'); // Hide element
+
+            $('#bussiness_date').datepicker();
+
+        });
+
+        /* hit controller to create (insert) data in DB */
+        function saveTaskFn() {
+            var formData = $("#createtaskform").serialize();
+            startLoader(formId);
+
+            $.ajax({
+                type: "post",
+                url: baseUrlContext + "/admin/tasks/save",
+                data: formData,
+                dataType: "json",
+                success: function (data) {
+                    swal("Welcome ", data.message);
+
+                    stopLoader(formId);
+                }
+            });
+
+        }
+
+        function resetTaskList() {
+            document.getElementById("createtaskform").reset();
+        }
+
+
+    </script>
+
+</div>

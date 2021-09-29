@@ -1,0 +1,120 @@
+<div class="container" th:fragment="firstcreate" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="mb-sm-2 mt-2 border">
+        <div class="m-2 ">
+            <form id="createtaskform" class="needs-validation" novalidate>
+
+                <div class="form-row">
+                    <div class="col panel panel-default">
+                        <label class=" text-info text-xl-center text-uppercase font-italic">Create Daily Task's
+                            List</label>
+                    </div>
+
+                    <div class="col panel panel-default ">
+                        <div class="panel-body float-right"><h3><a th:href="@{/admin/tasks/show}">
+                            <img class="" th:src="@{/asset/images/back.png}" width="35" height="35" alt=" "></a></h3>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="col">
+                        <label class="col-md-8" for="bussiness_date">Date: <span
+                                class="mandatoryfield">*</span></label>
+                        <input type="text" name="bussiness_date" id="bussiness_date"
+                               class="form-control input-fields validate[required]"
+                               placeholder="">
+                    </div>
+
+                    <div class="col">
+                        <label class="col-md-8" for="task_name">Task Name: <span
+                                class="mandatoryfield">*</span></label>
+                        <input type="text" name="task_name" id="task_name"
+                               class="form-control input-fields validate[required]" placeholder="">
+                    </div>
+
+                    <div class="col">
+                        <label class="col-md-8" for="task_for">Task for: <span class="mandatoryfield">*</span></label>
+                        <input type="text" name="task_for" id="task_for"
+                               class="form-control input-fields validate[required]"
+                               placeholder="">
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+                    <div class="col">
+                        <label class="col-md-8" for="solved_by">Solved By: <span
+                                class="mandatoryfield">*</span></label>
+                        <input type="text" name="solved_by" id="solved_by"
+                               class="form-control input-fields validate[required]" placeholder="">
+                    </div>
+
+                    <!--                    <div class="col">-->
+                    <!--                        <label class="col-md-8" for="status">Status: <span-->
+                    <!--                                class="mandatoryfield">*</span></label>-->
+                    <!--                        <input type="text" name="status" id="status"-->
+                    <!--                               class="form-control input-fields validate[required]" placeholder="">-->
+                    <!--                    </div>-->
+
+                    <div class="col">
+                        <label class="col-md-8" for="started_at">Started At: <span
+                                class="mandatoryfield">*</span></label>
+                        <input type="time" id="started_at" name="started_at" class="form-control">
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="col">
+                        <label class="col-md-8" for="ended_at">Ended At: <span
+                                class="mandatoryfield">*</span></label>
+                        <input type="time" id="ended_at" name="ended_at" class="form-control">
+                    </div>
+
+                    <div class="col">
+                        <label class="col-md-8" for="task_id">Task Id: <span
+                                class="mandatoryfield">*</span></label>
+                        <input type="text" name="task_id" id="task_id"
+                               class="form-control input-fields " placeholder="">
+
+                        <input type="hidden" name="status" id="status"
+                               class="form-control input-fields " placeholder="">
+                    </div>
+
+                    <div class="col">
+                        <label class="col-md-8" for="remarks">Remarks: <span class="mandatoryfield">*</span></label>
+                        <textarea class="form-control input-fields" name="remarks" id="remarks" rows="3"></textarea>
+                    </div>
+
+                </div>
+
+                <div class="m-2 form-row">
+
+                    <div class="col">
+
+                        <button type="button"
+                                class="ml-2 btn btn-outline-warning btn-m float-right"
+                                onclick="resetTaskList();"><i
+                                class="fa fa-check"></i> Reset
+                        </button>
+
+                        <button type="button"
+                                class="btn btn-outline-success btn-m float-right"
+                                onclick="saveTaskFn();"><i
+                                class="fa fa-check"></i>Save
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+
+
+</div>
